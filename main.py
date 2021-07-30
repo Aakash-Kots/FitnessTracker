@@ -1,7 +1,7 @@
 from tkinter import *
 from exercises import exercises
 master = Tk()
-
+print('Hello world!')
 master.geometry("200x200")
 master.configure(bg='blue')
 
