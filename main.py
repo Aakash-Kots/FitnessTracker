@@ -81,8 +81,7 @@ def showAllData():
     file_name = 'AllData.xlsx'
     df.to_excel(file_name)
 
-    os.system("open /Users/aakashkothari/Desktop/FitnessTrackerProject/AllData.xlsx")
-    print(values)
+    os.system(os.getenv('dataurl'))
 
 
 def openPlot():
@@ -94,31 +93,62 @@ def openPlot():
     weightToPlot.grid(row=1,column=0)
     drawGraph = Button(plot, text='Plot Graph', command=lambda: DoPlot(dropVar2, weightToPlot.get()))
     drawGraph.grid(row=2, column=0)
+#
+#
+# def openBMI():
+#     bmiPage = Toplevel()
+#     bmiPage.title('Calculate your BMI')
+#     weightLabel = Label(bmiPage,text='Enter your weight/kg',borderwidth=1,relief='solid').grid(row=0,column=0)
+#     weightBox = Spinbox(bmiPage,from_=0,to_=1000,width=4)
+#     weightBox.set(10)
+#     weightBox.grid(row=1,column=0)
+#     heightLabel = Label(bmiPage,text='Enter your height/m', borderwidth=1,relief='solid').grid(row=0,column=1)
+#     heightBox = Spinbox(bmiPage,from_=0,to_=1000, width=4)
+#     heightBox.grid(row=1,column=1)
+#     heightBox.set(10)
+#     print(weightBox.get(),heightBox.get())
+#     weight = int(weightBox.get())
+#     height = int(heightBox.get())
+#     bmi = weight/(height * height)
+#     showBmiButton = Button(bmiPage, text='Calculate!', command=lambda: showBMI(bmi)).grid(row=2)
+#     print(bmi)
+#
+#
+#
+# def showBMI(bmi):
+#     print(bmi)
+#     showBmiPage = Toplevel()
+#     bmi = Label(showBmiPage,text=f'Your bmi is {bmi}').pack()
+#
 
 
+exerciseLabel = Label(master,text='Chose your exercise').grid(row=0,column=0)
+calenderLabel = Label(master,text='Chose the date').grid(row=0,column=1, pady=(5,5))
+weightLabel = Label(master,text='Chose the weight').grid(row=0,column=2, pady=(5,5))
+repsLabel = Label(master,text='Chose the reps').grid(row=0,column=3, pady=(5,5))
 
 clicked = StringVar()
-btn = Button(master, text='Open Plot Page', command=openPlot).grid(column=3, row=2)
+btn = Button(master, text='Open Plot Page', command=openPlot).grid(column=2, row=2,pady=(5,5))
 clicked.set("Exercise")
-cal = Calendar(master,selectmode='day',year=2021,month=8,day=1)
-cal.grid(row=1, padx=20)
+cal = Calendar(master,selectmode='day',year=2021,mosnth=8,day=1)
+cal.grid(row=1,column=1)
 reps = IntVar()
 
 drop = OptionMenu(master,clicked,*options)
-drop.grid(row=0,padx=(10,10))
-showAll = Button(master,text='Show all data', command=showAllData).grid(row=1, column=1)
+drop.grid(row=1,column=0,pady=(0,0))
+showAll = Button(master,text='Show all data', command=showAllData).grid(row=2, column=1,pady=(5,5))
 
 weightVal = Spinbox(master,from_=0, to_=1000, width=2)
-weightVal.grid(row=2,column=0)
+weightVal.grid(row=1,column=2,padx=(5,5))
 
 repCounter = Spinbox(master,from_=0, to_=99, width=2)
-repCounter.grid(row=3,column=0)
+repCounter.grid(row=1,column=3)
 
-button = Button(master,text='Click',command=lambda: save(repCounter.get(),clicked.get(),cal.get_date(),weightVal.get())).grid(pady=(10,10))
+button = Button(master,text='Log Data',command=lambda: save(repCounter.get(),clicked.get(),cal.get_date(),weightVal.get())).grid(row=2,column=0,pady=(5,5))
 # button2 = Button(master,text='Plot', command=newWindow).grid()
 label1 = Label(master,text="Select exercise,reps and date")
 
-label1.grid(pady=(10,10), padx=(10,10))
+label1.grid(pady=(10,10), padx=(10,10),row=3,column=1)
 
 mainloop()
 
