@@ -1,3 +1,2 @@
 .env
-AllData.xlsx
-.gitignore
+!/.gitignore
