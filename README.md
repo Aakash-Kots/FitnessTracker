@@ -1,0 +1,1 @@
+This repository contains code for a basic fitness tracker. I have left the design component for you guys to experiment with. You wil have to creaet your own mysql database and connect to it in order for it to work. There are a lot of tutorials about this on the internet, so it shouldnt be a problem. 
